@@ -106,23 +106,3 @@ New-Item -Path HKCU:Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetSt
     | New-ItemProperty -Name FullPath -Value 1 -PropertyType DWORD `
     | Out-Null
 
-# install classic shell.
-New-Item -Path HKCU:Software\IvoSoft\ClassicStartMenu -Force `
-    | New-ItemProperty -Name ShowedStyle2      -Value 1 -PropertyType DWORD `
-    | Out-Null
-New-Item -Path HKCU:Software\IvoSoft\ClassicStartMenu\Settings -Force `
-    | New-ItemProperty -Name EnableStartButton -Value 1 -PropertyType DWORD `
-    | New-ItemProperty -Name SkipMetro         -Value 1 -PropertyType DWORD `
-    | Out-Null
-choco install -y classic-shell -installArgs ADDLOCAL=ClassicStartMenu
-
-# install Google Chrome.
-# see https://www.chromium.org/administrators/configuring-other-preferences
-choco install -y googlechrome
-$chromeLocation = 'C:\Program Files (x86)\Google\Chrome\Application'
-cp -Force GoogleChrome-external_extensions.json (Get-Item "$chromeLocation\*\default_apps\external_extensions.json").FullName
-cp -Force GoogleChrome-master_preferences.json "$chromeLocation\master_preferences"
-cp -Force GoogleChrome-master_bookmarks.html "$chromeLocation\master_bookmarks.html"
-
-# replace notepad with notepad2.
-choco install -y notepad2
