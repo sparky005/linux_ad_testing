@@ -6,13 +6,15 @@ config.vm.define "centos" do |centos|
   config.vm.provider :virtualbox do |vb|
     vb.gui = false
     vb.memory = 512
-    vb.cpus = 1
+    vb.cpus = 2
   end
 
   centos.vm.box = "centos/7"
   centos.vm.hostname = "vagrant-awx-test"
+  centos.vm.network "private_network", ip: "192.168.56.5",
+    virtualbox__intnet: true
   centos.vm.network "public_network"
-  #centos.vm.provision "shell", path: "setup.sh"
+  centos.vm.provision "shell", path: "scripts/setup.sh"
 end
     config.vm.define "windows-domain-controller" do |dc|
     dc.vm.box = "windows-2016-amd64"
@@ -39,7 +41,8 @@ end
                         "--medium", "emptydrive"]
     end
 
-    dc.vm.network "private_network", ip: "192.168.56.2"
+    dc.vm.network "private_network", ip: "192.168.56.2",
+        virtualbox__intnet: true
     dc.vm.network "public_network"
 
     dc.vm.provision "shell", inline: "Uninstall-WindowsFeature Windows-Defender-Features" # because defender slows things down a lot.

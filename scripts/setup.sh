@@ -16,7 +16,7 @@ sudo systemctl start docker
 wget https://nodejs.org/dist/v6.11.3/node-v6.11.3.tar.gz
 tar xzvf node-v* && cd node-v*
 ./configure
-make -j4
+make -j2
 sudo make install
 cd
 sudo pip install docker-py --upgrade
@@ -25,3 +25,4 @@ exit
 
 # must install node from source, so amend the above
 # maybe start docker, then fix perms for current user
+# to enter container: docker exec -ti awx_task bash 
