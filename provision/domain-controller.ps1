@@ -1,5 +1,5 @@
-$domain = 'example.com'
-$netbiosDomain = 'EXAMPLE'
+$domain = 'hq.local'
+$netbiosDomain = 'HQ'
 $safeModeAdminstratorPassword = ConvertTo-SecureString 'HeyH0Password' -AsPlainText -Force
 
 echo 'Installing the AD services and administration tools...'

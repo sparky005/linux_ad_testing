@@ -4,7 +4,7 @@ Install-WindowsFeature ADCS-Cert-Authority -IncludeManagementTools
 $caCommonName = 'Example Enterprise Root CA'
 
 # configure the CA DN using the default DN suffix (which is based on the
-# current Windows Domain, example.com) to:
+# current Windows Domain, hq.local) to:
 #
 #   CN=Example Enterprise Root CA,DC=example,DC=com
 #
